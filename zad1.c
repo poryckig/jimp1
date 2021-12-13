@@ -1,13 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "eliminacja_gaussa.h"
+#include "podstawienie_wsteczne.h"
 
+/*
 typedef struct {
     int n;   // liczba równań
     double *a; // macierz
     double *b; // wektor prawych stron
 } * ur_t;
-
+*/
 ur_t czytaj( char *nazwa_pliku ) {
     FILE *in = fopen( nazwa_pliku, "r" );
     int n = 0;
@@ -29,13 +32,13 @@ ur_t czytaj( char *nazwa_pliku ) {
     }
 
     u->n = n;
-  for( int i= 0; i < n*n; i++ ) {
+    for( int i= 0; i < n*n; i++ ) {
         if( fscanf( in, "%lf", u->a+i ) != 1 ) {
-        free( u->b );
-        free( u->a );
-        free( u );
-        return NULL;
-    }
+            free( u->b );
+            free( u->a );
+            free( u );
+            return NULL;
+        }
     }
     for( int i= 0; i < n; i++ ) {
     if( fscanf( in, "%lf", u->b+i ) != 1 ) {
@@ -48,7 +51,7 @@ ur_t czytaj( char *nazwa_pliku ) {
 
     return u;
 }
-
+/*
 void eliminacja_gaussa(ur_t ur){
     int n = ur->n;
     double *A = ur->a;
@@ -62,6 +65,8 @@ void eliminacja_gaussa(ur_t ur){
         }
     }                           
 }
+*/
+/*
 void podstawienie_wsteczne(ur_t ur, double *x){
     int n = ur->n;
     double *A = ur->a;
@@ -73,7 +78,7 @@ void podstawienie_wsteczne(ur_t ur, double *x){
         x[w] = ( b[w] - s ) / A[w*n+w];
     }
 }
-
+*/
 double *solve( ur_t ur ) {
     int n = ur->n;
     if( n <= 0 )
