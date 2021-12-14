@@ -17,12 +17,29 @@ int main(int argc, char ** argv) {
 	printToScreen(b);
 
 	res = eliminate(A,b);
-	if (res == 1) printf("%s: podano macierz osobliwa - pojawilo sie dzielenie przez 0!", argv[0]);
+	if (res == 1){
+	       	printf("%s: podano macierz osobliwa - pojawilo sie dzielenie przez 0!\n", argv[0]);
+		freeMatrix(A);
+		freeMatrix(b);
+		return EXIT_FAILURE;
+	}
 	x = createMatrix(b->r, 1);
 	if (x != NULL) {
 		res = backsubst(x,A,b);
-		if (res == 1) printf("%s: element na diagonali rowny 0!",argv[0]);
-		if (res == 2) printf("%s: macierz nieprawidlowego rozmiaru!", argv[0]);
+		if (res == 1){
+		       	printf("%s: element na diagonali rowny 0!\n",argv[0]);
+			freeMatrix(A);
+			freeMatrix(b);
+			freeMatrix(x);
+			return EXIT_FAILURE;
+		}
+		if (res == 2){ 
+			printf("%s: macierz nieprawidlowego rozmiaru!\n", argv[0]);
+			freeMatrix(A);
+			freeMatrix(b);
+			freeMatrix(x);
+			return EXIT_FAILURE;
+		}
 
 		printToScreen(x);
 	  freeMatrix(x);
