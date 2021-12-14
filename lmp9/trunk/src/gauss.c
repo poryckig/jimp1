@@ -10,6 +10,7 @@ int eliminate(Matrix *mat, Matrix *bb){
     double **b = bb->data;
     for( int k= 0; k < n-1; k++ ) {
         for( int w= k+1; w < n; w++ ) {
+	    if(A[k][k] == 0) return 1;
             double q = A[w][k] / A[k][k];     // A[i*n+j] to A(i,j)
             for( int i= k; i < n; i++ )
                 A[w][i] -= q * A[k][i];

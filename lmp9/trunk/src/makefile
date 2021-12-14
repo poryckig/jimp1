@@ -5,7 +5,7 @@ gauss.o: gauss.c gauss.h
 	cc gauss.c -c
 
 backsubst.o: backsubst.c backsubst.h
-	cc backsbust.c -c
+	cc backsubst.c -c
 
 mat_io.o: mat_io.c mat_io.h
 	cc mat_io.c -c
