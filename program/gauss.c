@@ -14,12 +14,12 @@ int eliminate(Matrix *mat, Matrix *bb){
 		if( A[w][k] > A[mx][k])
 		   mx = w;
 	  if ( mx != k){
-		double *tmp = A[k];
+		double *tmp1 = A[k];
 		A[k] = A[mx];
-		A[mx] = tmp;
-		tmp = b[k];
+		A[mx] = tmp1;
+		tmp1 = b[k];
 		b[k] = b[mx];
-		b[mx] = tmp;
+		b[mx] = tmp1;
 	  }
         for( int w= k+1; w < n; w++ ) {
 	    if(A[k][k] == 0) return 1;
