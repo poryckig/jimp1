@@ -14,12 +14,13 @@ int eliminate(Matrix *mat, Matrix *bb){
 		if( A[w][k] > A[mx][k])
 		   mx = w;
 	  if ( mx != k){
-		double *tmp = A[k];
-		A[k] = A[mx];
-		A[mx] = tmp;
-		tmp = b[k];
+		double *tmp = b[k];
 		b[k] = b[mx];
 		b[mx] = tmp;
+		tmp = A[k];
+		A[k] = A[mx];
+		A[mx] = tmp;
+
 	  }
         for( int w= k+1; w < n; w++ ) {
 	    if(A[k][k] == 0) return 1;
@@ -29,7 +30,7 @@ int eliminate(Matrix *mat, Matrix *bb){
             b[w][0] -= q*b[k][0] ;
         }
     }                           
-
+		
 
 return 0;
 }
