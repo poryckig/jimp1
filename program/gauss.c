@@ -23,7 +23,8 @@ int eliminate(Matrix *mat, Matrix *bb){
 	  }
         for( int w= k+1; w < n; w++ ) {
 	    if(A[k][k] == 0) return 1;
-            double q = A[w][k] / A[k][k];                 				for( int i= k; i < n; i++ )
+            double q = A[w][k] / A[k][k];    
+	    for( int i= k; i < n; i++ )
                 A[w][i] -= q * A[k][i];
             b[w][0] -= q*b[k][0] ;
         }
